@@ -2,7 +2,7 @@
 
 A backend API for managing subscriptions and sending automated renewal reminders.
 
-## 🚀 Features
+##  Features
 
 - User Authentication (JWT)
 - Subscription CRUD Operations
@@ -14,7 +14,7 @@ A backend API for managing subscriptions and sending automated renewal reminders
 - Centralized Error Handling
 - RESTful API Architecture
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 - Node.js
 - Express.js
@@ -24,14 +24,15 @@ A backend API for managing subscriptions and sending automated renewal reminders
 - Upstash QStash
 - Arcjet
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install
 npm run dev
+npx @upstash/qstash-cli dev(another terminal for test qstash workflow locally)
 ```
 
-## 🔧 Environment Variables
+##  Environment Variables
 
 ```env
 PORT=5000

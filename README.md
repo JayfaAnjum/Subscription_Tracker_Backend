@@ -34,10 +34,16 @@ npm run dev
 ## 🔧 Environment Variables
 
 ```env
-MONGO_URI=
-JWT_SECRET=
-QSTASH_TOKEN=
+PORT=5000
+NODE_ENV='development'
+MONGODB_URI=mongodb://localhost:27017/subscriptionDB?replicaSet=rs0
+JWT_SECRET=secret
+JWT_EXPIRES_IN=1d
 ARCJET_KEY=
-EMAIL_USER=
+ARCJET_ENV=development
+SERVER_URL=http://localhost:5000
+QSTASH_URL=http://127.0.0.1:8080
+QSTASH_TOKEN=
 EMAIL_PASSWORD=
+
 ```

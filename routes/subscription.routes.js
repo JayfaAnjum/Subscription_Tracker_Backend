@@ -1,13 +1,12 @@
 import {Router} from "express"
-import { createSubscription, getUserSubscripitions } from "../controllers/subscription.controller.js"
-import { authorize } from "../middleware/auth.middleware.js"
+import { createSubscription, deleteUserSingleSubscription, getUserSubscripitions } from "../controllers/subscription.controller.js"
+import { authenticate } from "../middleware/auth.middleware.js"
 
 const subscriptionRouter = Router()
 
 
-subscriptionRouter.get("/:id",authorize,getUserSubscripitions)
-subscriptionRouter.post("/",authorize,createSubscription)
-subscriptionRouter.put("/:id")
-subscriptionRouter.delete("/:id")
+subscriptionRouter.get("/:id",authenticate,getUserSubscripitions)
+subscriptionRouter.post("/",authenticate,createSubscription)
+subscriptionRouter.delete("/:id",authenticate,deleteUserSingleSubscription)
 
 export default subscriptionRouter

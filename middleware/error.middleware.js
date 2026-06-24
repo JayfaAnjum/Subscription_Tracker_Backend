@@ -1,32 +1,26 @@
+import AppError from "../utils/AppError.js";
+
 const errorMiddleWare = (err,req,res,next)=>{
-    try{
+   
         let error = {...err };
 
         error.message= err.message
 
         if(err.name === 'CastError'){
-            const message = "Resource not found"
-            error = new Error(message)
-            error.statusCode = 404;
+        error = new AppError("Resource not found",404,"CAST_ERROR")
         }
 
         if(err.code === 11000){
-            const message ="Duplicate field value entered"
-            error = new Error(message);
-            error.statusCode = 400
+           error =  new AppError("Duplicate field value entered",400,"DUPLICATE_KEY")
         }
 
         if(err.name === "validationError"){
             const message = Object.values(err.errors).map(val =>val.message)
-            error = new Error(message.join(','))
-            error.statusCode = 400
+           error =  new AppError(message,400,"VALIDATION_ERROR")
         }
         
-        res.status(error.statusCode || 500).json({success:false,error:error.message || "Server Error"})
-    }catch(error){
-
-        next(error)
-    }
-
+         res.status(error.statusCode || 500).json({success:false,error:error.message || "Server Error",errorcode:error.errorCode})
+   
+  
 }
 export default errorMiddleWare;

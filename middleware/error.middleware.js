@@ -11,13 +11,17 @@ const errorMiddleWare = (err,req,res,next)=>{
         }
 
         if(err.code === 11000){
-           error =  new AppError("Duplicate field value entered",400,"DUPLICATE_KEY")
+           error =  new AppError("Duplicate field value entered",409,"DUPLICATE_KEY")
         }
 
-        if(err.name === "validationError"){
+        if(err.name === "ValidationError"){
             const message = Object.values(err.errors).map(val =>val.message)
            error =  new AppError(message,400,"VALIDATION_ERROR")
         }
+
+        if (err.name === "TokenExpiredError") {
+          error = new AppError("Session expired, please login again", 401, "TOKEN_EXPIRED")
+         }
         
          res.status(error.statusCode || 500).json({success:false,error:error.message || "Server Error",errorcode:error.errorCode})
    

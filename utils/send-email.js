@@ -3,14 +3,16 @@ import { accountEmail } from "../config/nodemailer.js";
 import { transporter } from "../config/nodemailer.js";
 import { emailTemplates } from "./email.template.js";
 
-export const sendReminderEmail = async ({ to, subscription }) => {
+export const sendReminderEmail = async ({ to, subscription,renewaldate }) => {
   if (!to) {
     throw new Error("Missing recipient email");
   }
 
   const subject = "Welcome ";
 
-  const html = emailTemplates();
+  const html = emailTemplates(
+    to,subscription,renewaldate
+  );
    
  
 

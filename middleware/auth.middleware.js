@@ -12,9 +12,7 @@ export const authenticate = async(req,res,next)=>{
         }
 
         if(!token){
-            return res.status(401).json({
-                message:"Unauthorized"
-            })
+           throw new AppError("Access denied, no token provided",401,"NO_TOKEN")
         }
 
         const decode = jwt.verify(token ,JWT_SECRET)

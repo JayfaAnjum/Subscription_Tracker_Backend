@@ -45,11 +45,11 @@ const subscriptionSchema = new mongoose.Schema({
             message: "Start date must be in the past"
         }
     },
-    renewalDate:{              // ✅ capital D — matches pre-save hook
+    renewalDate:{              
         type:Date,
         validate:{
             validator:function(value) {
-                return value > this.startDate;  // ✅ compare against startDate not new Date()
+                return value > this.startDate;  
             },
             message: "Renewal date must be after the start date"
         }
